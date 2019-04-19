@@ -23,7 +23,7 @@ export class TranscriptService {
           const snippetsArray = new Array<TranscriptSnippet>();
           aSnippetsJsonArray.forEach(aSnippetJson => {
             const newTranscriptSnippet = Object.assign(new TranscriptSnippet(), aSnippetJson) as TranscriptSnippet;
-            this.testMultiplySnippet(newTranscriptSnippet);
+            // this.testMultiplySnippet(newTranscriptSnippet);
             snippetsArray.push(newTranscriptSnippet);
           });
           return snippetsArray;
