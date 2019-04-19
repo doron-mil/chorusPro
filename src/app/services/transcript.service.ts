@@ -16,7 +16,6 @@ export class TranscriptService {
   constructor(private http: HttpClient) {
   }
 
-
   getTranscript(aMeetingId: string): Observable<Transcript> {
     return this.http
       .get(`https://static.chorus.ai/api/${aMeetingId}.json`, {headers}).pipe(
@@ -30,8 +29,12 @@ export class TranscriptService {
           return snippetsArray;
         }),
         map(aSnippetsArray => aSnippetsArray.sort(this.timeSortFunc)),
-        map(aSortedSnippetsArray => this.convertSnippetsArrayToTranscript(aSortedSnippetsArray))
-       );
+        map(aSortedSnippetsArray => this.convertSnippetsArrayToTranscript(aSortedSnippetsArray)),
+        catchError(err => {
+          this.handleError(err);
+          return throwError(err);
+        })
+      );
   }
 
   private timeSortFunc(aTS: TranscriptSnippet, bTS: TranscriptSnippet): number {
@@ -54,5 +57,9 @@ export class TranscriptService {
 
   private testMultiplySnippet(aTranscriptSnippet: TranscriptSnippet) {
     aTranscriptSnippet.snippet = aTranscriptSnippet.snippet.repeat(10);
+  }
+
+  handleError(error) {
+    console.error('Failed to retrieve Transcript ', error);
   }
 }

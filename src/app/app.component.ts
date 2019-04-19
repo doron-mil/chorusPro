@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {TranscriptService} from './services/transcript.service';
 import {Transcript} from './model/transcript';
 import {ActivatedRoute} from '@angular/router';
@@ -10,15 +10,15 @@ import {throwError} from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   title = 'chorusPro';
 
   @ViewChild('videoPlayer') videoPlayer: ElementRef;
 
-  meetingId = '4d79041e-f25f-421d-9e5f-3462459b9934';
+  meetingId: string;
   apiBaseUrl = 'https://static.chorus.ai/api/';
   videoSource: string;
-  isPalaying = false;
+  isPlaying = false;
   errorString = 'Loading...';
   videoErrorMsg: string;
 
@@ -66,12 +66,12 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   toggleVideo() {
     const video: HTMLVideoElement = this.videoPlayer.nativeElement;
-    if (this.isPalaying) {
+    if (this.isPlaying) {
       video.pause();
     } else {
       video.play();
     }
-    this.isPalaying = !this.isPalaying;
+    this.isPlaying = !this.isPlaying;
   }
 
 
