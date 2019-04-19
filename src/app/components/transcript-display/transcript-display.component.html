@@ -1,0 +1,6 @@
+<div *ngIf="transcript">
+  <app-snippets-array-display
+    *ngFor="let transcriptSnippetsArray of transcript.transcriptSnippetsArray"
+    [transcriptSnippetsArray]="transcriptSnippetsArray">
+  </app-snippets-array-display>
+</div>

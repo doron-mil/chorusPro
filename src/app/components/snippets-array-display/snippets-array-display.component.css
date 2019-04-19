@@ -1,0 +1,32 @@
+* {
+  font-family: "SFUIText-Regular";
+}
+
+.speaker-cust {
+  background-color: #EE6EFF;
+}
+
+.speaker-rep {
+  background-color: #00A7D1;
+}
+
+.snippet {
+  width: fit-content;
+  border-radius: 10px;
+  padding: 8px 7px 8px 12px;
+  margin-bottom: 1PX;
+  font-size: 15px;
+  color: #333333;
+}
+
+.speaker {
+  font-size: 12px;
+  color: #333333;
+  line-height: 16px;
+  padding-top: 1vh;
+}
+
+.snippets-container {
+  display: flex;
+  flex-direction: column;
+}
