@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
 import {Transcript} from '../model/transcript';
 import {TranscriptSnippet} from '../model/transcriptSnippet';
-import {Observable, throwError} from 'rxjs';
+import {Observable, of} from 'rxjs';
 
 const headers = new HttpHeaders()
   .set('Content-Type', 'application/json');
@@ -32,7 +32,7 @@ export class TranscriptService {
         map(aSortedSnippetsArray => this.convertSnippetsArrayToTranscript(aSortedSnippetsArray)),
         catchError(err => {
           this.handleError(err);
-          return throwError(err);
+          return of(null);
         })
       );
   }
@@ -59,7 +59,6 @@ export class TranscriptService {
     aTranscriptSnippet.snippet = aTranscriptSnippet.snippet.repeat(10);
   }
 
-  handleError(error) {
-    console.error('Failed to retrieve Transcript ', error);
+  private handleError(error) {
   }
 }

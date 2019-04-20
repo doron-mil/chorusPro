@@ -52,6 +52,10 @@ export class AppComponent implements OnInit {
           return throwError(err);
         }))
         .subscribe(aTranscript => {
+          if (!aTranscript) {
+            this.errorString = 'Not a valid transcript id';
+            return;
+          }
           this.transcript = aTranscript;
           this.setVideoSource();
           this.errorString = null;

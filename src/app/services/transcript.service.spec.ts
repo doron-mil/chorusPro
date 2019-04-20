@@ -45,5 +45,24 @@ describe('TranscriptService', () => {
       });
   })));
 
+  it('Sending the wrong Id', async(inject([TranscriptService], (service: TranscriptService) => {
+    const meetingId = 'Wrong-ID-1111';
+
+    const spy = spyOn<any>(service, 'handleError').and.callThrough();
+
+    service.getTranscript(meetingId).subscribe((aTranscript: Transcript) => {
+      expect(spy).toHaveBeenCalled();
+    });
+  })));
+
+ it('Sending null', async(inject([TranscriptService], (service: TranscriptService) => {
+    const meetingId = null;
+
+    const spy = spyOn<any>(service, 'handleError').and.callThrough();
+
+    service.getTranscript(meetingId).subscribe((aTranscript: Transcript) => {
+      expect(spy).toHaveBeenCalled();
+    });
+  })));
 
 });
